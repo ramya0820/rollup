@@ -592,8 +592,9 @@ export default class Module {
 	}
 
 	traceVariable(name: string): Variable | null {
-		if (name in this.scope.variables) {
-			return this.scope.variables[name];
+		const localVariable = this.scope.variables.get(name);
+		if (localVariable) {
+			return localVariable;
 		}
 
 		if (name in this.importDescriptions) {
